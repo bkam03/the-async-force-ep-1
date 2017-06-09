@@ -27,9 +27,21 @@ function people4WorldRequest (){
 function people14Request (){
   var response = JSON.parse( this.responseText );
   var nameTarget = document.getElementById( 'person14Name' );
+
   var species = response.species;
+  var speciesRequest = new XMLHttpRequest();
+  speciesRequest.addEventListener( 'load', people14SpeciesRequest );
+  speciesRequest.open( 'GET', species );
+  speciesRequest.send();
 
   nameTarget.innerHTML = response.name;
+}
+
+function people14SpeciesRequest (){
+  var response = JSON.parse( this.responseText );
+  console.log( response );
+  var speciesTarget = document.getElementById( 'person14Species' );
+  speciesTarget.innerHTML = response.name;
 }
 
 
