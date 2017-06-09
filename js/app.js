@@ -74,31 +74,31 @@ function filmRequest (){
       var planetArray = currentFilm.planets;
       for( var planetNum = 0; planetNum < planetArray.length; planetNum++ ){
 
-        ( function ( currentPlanetsContainer ){
-          var currentPlanet = planetArray[planetNum];
+        planetDivMaker( planetsContainer, planetArray[ planetNum ] );
 
-          var newRequest = new XMLHttpRequest();
-          newRequest.addEventListener( 'load', function (){
-            var response = JSON.parse( this.responseText );
-            var listContainerOfSinglePlanet = document.createElement( 'li' );
-            listContainerOfSinglePlanet.className = 'planet';
-
-            var planetContainer = document.createElement( 'h4' );
-            planetContainer.innerHTML = response.name;
-            listContainerOfSinglePlanet.appendChild( planetContainer );
-
-            currentPlanetsContainer.appendChild( listContainerOfSinglePlanet );
-          } );
-          newRequest.open( 'GET', currentPlanet );
-          newRequest.send();
-
-        }) ( planetsContainer );
 
         filmTitleContainer.appendChild( planetsContainer );
     }
     var filmListTarget = document.getElementById( 'filmList' );
     filmListTarget.appendChild( filmTitleContainer );
   }
+}
+
+function planetDivMaker ( currentPlanetsContainer, currentPlanet ){
+  var newRequest = new XMLHttpRequest();
+  newRequest.addEventListener( 'load', function (){
+    var response = JSON.parse( this.responseText );
+    var listContainerOfSinglePlanet = document.createElement( 'li' );
+    listContainerOfSinglePlanet.className = 'planet';
+
+    var planetContainer = document.createElement( 'h4' );
+    planetContainer.innerHTML = response.name;
+    listContainerOfSinglePlanet.appendChild( planetContainer );
+
+    currentPlanetsContainer.appendChild( listContainerOfSinglePlanet );
+  } );
+  newRequest.open( 'GET', currentPlanet );
+  newRequest.send();
 }
 
 
