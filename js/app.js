@@ -27,7 +27,9 @@ function people4WorldRequest (){
 function people14Request (){
   var response = JSON.parse( this.responseText );
   var nameTarget = document.getElementById( 'person14Name' );
-  var speciesTarget;
+  var species = response.species;
+
+  nameTarget.innerHTML = response.name;
 }
 
 
